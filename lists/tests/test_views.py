@@ -111,7 +111,7 @@ class ListViewTest(TestCase):
 
     def test_uses_list_template(self):
         list_ = List.objects.create()
-        response = self.client.get(f'/lists/{list_.id}/')
+        response = self.client.get('/lists/{}/'.format(list_.id))
         self.assertTemplateUsed(response, 'list.html')
 
 
