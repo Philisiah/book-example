@@ -133,7 +133,7 @@ class ListViewTest(TestCase):
         other_list = List.objects.create()
         correct_list = List.objects.create()
         self.client.post(
-            f'/lists/{correct_list.id}/',
+            '/lists/correct_list.id/',
             data={'text': 'A new item for an existing list'}
         )
 
@@ -147,7 +147,7 @@ class ListViewTest(TestCase):
         other_list = List.objects.create()
         correct_list = List.objects.create()
         response = self.client.post(
-            f'/lists/{correct_list.id}/',
+            '/lists/correct_list.id/',
             data={'text': 'A new item for an existing list'}
         )
         self.assertRedirects(response, f'/lists/{correct_list.id}/')
@@ -156,7 +156,7 @@ class ListViewTest(TestCase):
     def post_invalid_input(self):
         list_ = List.objects.create()
         return self.client.post(
-            f'/lists/{list_.id}/',
+            '/lists/list_.id/',
             data={'text': ''}
         )
 
@@ -182,7 +182,7 @@ class ListViewTest(TestCase):
         list1 = List.objects.create()
         item1 = Item.objects.create(list=list1, text='textey')
         response = self.client.post(
-            f'/lists/{list1.id}/',
+            '/lists/list1.id/',
             data={'text': 'textey'}
         )
 
@@ -215,7 +215,7 @@ class ShareListTest(TestCase):
         sharee = User.objects.create(email='share.with@me.com')
         list_ = List.objects.create()
         self.client.post(
-            f'/lists/{list_.id}/share',
+            '/lists/list_.id/share',
             {'sharee': 'share.with@me.com'}
         )
         self.assertIn(sharee, list_.shared_with.all())
@@ -225,7 +225,7 @@ class ShareListTest(TestCase):
         sharee = User.objects.create(email='share.with@me.com')
         list_ = List.objects.create()
         response = self.client.post(
-            f'/lists/{list_.id}/share',
+            '/lists/list_.id/share',
             {'sharee': 'share.with@me.com'}
         )
         self.assertRedirects(response, list_.get_absolute_url())
