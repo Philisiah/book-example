@@ -150,7 +150,7 @@ class ListViewTest(TestCase):
             '/lists/correct_list.id/',
             data={'text': 'A new item for an existing list'}
         )
-        self.assertRedirects(response, f'/lists/{correct_list.id}/')
+        self.assertRedirects(response, '/lists/correct_list.id/')
 
 
     def post_invalid_input(self):
